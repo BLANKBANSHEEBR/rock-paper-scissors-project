@@ -21,22 +21,28 @@
         border-radius: 100px;
         margin-right: 10px;
         border-width: 3px;
+        cursor: pointer;
       }
       .game-emoji {
         width: 50px;
       }
+      .result {
+        font-weight: bold;
+        font-size: 25px;
+        margin-top: 50px;
+      }
       .move {
-        margin-top: 60px;
-        margin-bottom: 3px;
+
       }
       .score {
-        margin-top: 0px;
+        margin-top: 60px;
       }
       .reset-score {
         padding: 8px 15px;
         font-size: 15px;
         border: none;
         background-color: white;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -55,6 +61,7 @@
       <img class="game-emoji" src="scissors-emoji.png">
     </button>
 
+    <p class="js-result result"></p>
     <p class="js-move move"></p>
     <p class="js-score score"></p>
 
@@ -126,13 +133,15 @@
 
       localStorage.setItem('score', JSON.stringify(score));
 
-      document.querySelector('.js-move').innerHTML = `You picked ${playerMove}. Computer picked ${computerMove}. ${result}`;
+      document.querySelector('.js-result').innerHTML = `${result}`;
+
+      document.querySelector('.js-move').innerHTML = `You <img class="game-emoji" src="${playerMove}-emoji.png"> <img class="game-emoji" src="${computerMove}-emoji.png"> Computer`
       
       updateScoreElement();
       }
       
       function updateScoreElement() {
-        document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}. Losses: ${score.losses}. Ties ${score.ties}.`;
+        document.querySelector('.js-score').innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties ${score.ties}`;
       }
     </script>
   </body>
